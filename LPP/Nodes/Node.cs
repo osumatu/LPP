@@ -22,6 +22,8 @@ namespace LPP.Nodes
             this.rightChild = rightChild;
         }
 
+        public abstract int CalculateTruthTable(int a, int b);
+
         public override string ToString()
         {
             return $"({leftChild} {this.Value} {rightChild})";
