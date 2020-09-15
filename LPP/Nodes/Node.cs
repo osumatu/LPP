@@ -22,7 +22,7 @@ namespace LPP.Nodes
             this.rightChild = rightChild;
         }
 
-        public abstract int CalculateTruthTable(int a, int b);
+        public abstract bool CalculateTTValue();
 
         public override string ToString()
         {

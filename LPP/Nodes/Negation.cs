@@ -11,6 +11,11 @@ namespace LPP.Nodes
             this.Value = '~'; 
         }
 
+        public override bool CalculateTTValue()
+        {
+            return !(this.leftChild.CalculateTTValue());
+        }
+
         public override string ToString()
         {
             return $"{this.Value}({this.leftChild})";
