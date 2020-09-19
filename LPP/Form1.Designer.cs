@@ -49,8 +49,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.truth_table_gbx = new System.Windows.Forms.GroupBox();
+            this.truth_table_lbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.binary_tree_pbx)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.truth_table_gbx.SuspendLayout();
             this.SuspendLayout();
             // 
             // input_process_btn
@@ -270,6 +272,7 @@
             // 
             // truth_table_gbx
             // 
+            this.truth_table_gbx.Controls.Add(this.truth_table_lbl);
             this.truth_table_gbx.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.truth_table_gbx.ForeColor = System.Drawing.Color.Green;
             this.truth_table_gbx.Location = new System.Drawing.Point(407, 80);
@@ -278,6 +281,15 @@
             this.truth_table_gbx.TabIndex = 7;
             this.truth_table_gbx.TabStop = false;
             this.truth_table_gbx.Text = "Truth table";
+            // 
+            // truth_table_lbl
+            // 
+            this.truth_table_lbl.AutoSize = true;
+            this.truth_table_lbl.ForeColor = System.Drawing.Color.Black;
+            this.truth_table_lbl.Location = new System.Drawing.Point(22, 68);
+            this.truth_table_lbl.Name = "truth_table_lbl";
+            this.truth_table_lbl.Size = new System.Drawing.Size(0, 30);
+            this.truth_table_lbl.TabIndex = 0;
             // 
             // Form1
             // 
@@ -296,6 +308,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.binary_tree_pbx)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.truth_table_gbx.ResumeLayout(false);
+            this.truth_table_gbx.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -323,6 +337,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox truth_table_gbx;
+        private System.Windows.Forms.Label truth_table_lbl;
     }
 }
 

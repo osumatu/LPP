@@ -12,16 +12,17 @@ namespace LPP
     public class BinaryTree
     {
         public Node Root { get; private set; }
-        private List<Node> leaves;
+        private List<char> leaves;
         private GraphHelper graphHelper;
-
+        private TruthTableHelper truthTableHelper;
         public BinaryTree(string formula)
         {
-            this.leaves = new List<Node>();
+            this.leaves = new List<char>();
             formula = formula.Replace(" ", "");
             this.IsFormulaValid(formula);
             this.Root = this.CreateABinaryTree(ref formula, null);
             graphHelper = new GraphHelper();
+            truthTableHelper = new TruthTableHelper();
         }
 
         public string PrintParsedFormula()
@@ -29,20 +30,15 @@ namespace LPP
             return this.Root.ToString();
         }
 
-        public char[] GetLeaves()
+        public string GetTruthTable()
         {
-            this.leaves.Sort((x, y) => x.Value.CompareTo(y.Value));
-            int size = this.leaves.Count * 2;
-            char[] variables = new char[size];
-            int i = 0;
-            foreach (Node l in this.leaves)
-            {
-                variables[i] = l.Value;
-                i++;
-                variables[i] = ' ';
-                i++;
-            }
-            return variables;
+            return this.truthTableHelper.GenerateTruthTable(this);
+        }
+
+        public List<char> GetLeaves()
+        {
+            this.leaves.Sort((x, y) => x.CompareTo(y));
+            return this.leaves;
         }
 
         public string GetTreeImage()
@@ -98,8 +94,8 @@ namespace LPP
                         return this.CreateABinaryTree(ref formula, node);
                     default:
                         node = new Leaf(formula[0]);
-                        if (!leaves.Exists(e => e.Value == node.Value))
-                            this.leaves.Add(node);
+                        if (!leaves.Exists(e => e == node.Value))
+                            this.leaves.Add(node.Value);
                         formula = formula.Remove(0, 1);
                         break;
                 }

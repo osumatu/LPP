@@ -13,7 +13,7 @@ namespace LPP.Nodes
 
         public override bool CalculateTTValue()
         {
-            return Convert.ToBoolean(Convert.ToInt16(this.Value));
+            return Convert.ToInt32(this.Value) == 1 ? true : false;
         }
 
         public override string ToString()
