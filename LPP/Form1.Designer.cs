@@ -91,6 +91,7 @@
             this.parsed_formula_lbl.Size = new System.Drawing.Size(276, 30);
             this.parsed_formula_lbl.TabIndex = 3;
             this.parsed_formula_lbl.Text = "Parsed formula will be here";
+            this.parsed_formula_lbl.UseMnemonic = false;
             // 
             // label1
             // 
@@ -290,6 +291,7 @@
             this.truth_table_lbl.Name = "truth_table_lbl";
             this.truth_table_lbl.Size = new System.Drawing.Size(0, 30);
             this.truth_table_lbl.TabIndex = 0;
+            this.truth_table_lbl.UseMnemonic = false;
             // 
             // Form1
             // 

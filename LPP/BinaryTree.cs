@@ -15,9 +15,11 @@ namespace LPP
         private List<char> leaves;
         private GraphHelper graphHelper;
         private TruthTableHelper truthTableHelper;
+        private string intialFormula;
         public BinaryTree(string formula)
         {
             this.leaves = new List<char>();
+            this.intialFormula = formula;
             formula = formula.Replace(" ", "");
             this.IsFormulaValid(formula);
             this.Root = this.CreateABinaryTree(ref formula, null);
@@ -32,7 +34,7 @@ namespace LPP
 
         public string GetTruthTable()
         {
-            return this.truthTableHelper.GenerateTruthTable(this);
+            return this.truthTableHelper.GenerateTruthTable(this, this.intialFormula);
         }
 
         public List<char> GetLeaves()

@@ -8,7 +8,6 @@ namespace LPP.Helpers
 {
     public class GraphHelper
     {
-
         public string GenerateGraphFromTree(BinaryTree tree)
         {
             string fileName = this.GenerateFileInfoAboutTree(tree);
@@ -24,7 +23,6 @@ namespace LPP.Helpers
         private string GenerateFileInfoAboutTree(BinaryTree tree)
         {
             string name = "tree.dot";
-            Node node = tree.Root;
             List<string> text = new List<string>();
             text.Add("graph logic {");
             text.Add("  node [ fontname = \"Arial\" ]");

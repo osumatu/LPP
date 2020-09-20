@@ -1,33 +1,55 @@
 ﻿using LPP.Nodes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LPP.Helpers
 {
     public class TruthTableHelper
     {
-        public string GenerateTruthTable(BinaryTree tree)
+        public string GenerateTruthTable(BinaryTree tree, string formula)
         {
-            int nrOfRows = (int)Math.Pow(2, tree.GetLeaves().Count);
-            int nrOfColumns = tree.GetLeaves().Count + 1;
-            int[ , ] table = new int[nrOfRows, nrOfColumns];
-            this.MakeColumns(ref table);
-            for (int i = 0; i < table.GetLength(0); i++)
+            var variables = tree.GetLeaves();
+            string truthTable = "";
+            for (int i = 0; i < variables.Count; i++)
             {
-                Node root = this.ChangeValueOfLeaves(tree.Root, tree.GetLeaves(), this.GetRow(i, table));
-                table[i, nrOfColumns - 1] = root.CalculateTTValue() ? 1 : 0;
+                truthTable = truthTable + $" {variables[i]} |";
             }
-            return this.ReadTruthTable(tree.GetLeaves(), tree.PrintParsedFormula(), table);
+            truthTable = truthTable + $" {tree.PrintParsedFormula()} \r\n";
+            if (!variables.Any(x => x != '1' && x != '0'))
+            {
+                for (int i = 0; i < variables.Count; i++)
+                {
+                    truthTable = truthTable + $" {variables[i]} |";
+                }
+                truthTable = truthTable + $" {(tree.Root.CalculateTTValue() ? 1 : 0)} \r\n";
+                return truthTable;
+            }
+            int nrOfRows = (int)Math.Pow(2, variables.Count);
+            int nrOfColumns = variables.Count + 1;
+            int[ , ] table = new int[nrOfRows, nrOfColumns];
+            this.MakeColumns(ref table, variables);
+            for (int i = 0; i < table.GetLength(0); i++) 
+            {
+                BinaryTree temp = this.ChangeValueOfLeaves(formula, variables, this.GetRow(i, table));
+                table[i, nrOfColumns - 1] = temp.Root.CalculateTTValue() ? 1 : 0;
+            }
+            return this.ReadTruthTable(truthTable, variables, tree.PrintParsedFormula(), table);
         }
 
-        private void MakeColumns(ref int[ , ] table)
+        private void MakeColumns(ref int[ , ] table, List<char> variables)
         {
             for (int c = 0; c < table.GetLength(1) - 1; c++) //-1 because the last column is meant for the result value
             {
-                int repeatEvery = (int)Math.Pow(2, (table.GetLength(1) - c)); // so we get amount of var - 1 the result column and + 1 because column starts from 0
+                int repeatEvery = (int)Math.Pow(2, table.GetLength(1) - (c + 2)); // c + 2 because index starts from 0 and the last column is meant for the result value
                 bool insertOnes = false;
                 for (int i = 0; i < table.GetLength(0); i++)
                 {
+                    if(variables[c] == '0' || variables[c] == '1')
+                    {
+                        table[i, c] = variables[c] == '0' ? 0 : 1;
+                        continue;
+                    }
                     table[i, c] = insertOnes ? 1 : 0;
                     if ((i + 1) % repeatEvery == 0)
                     {
@@ -40,40 +62,31 @@ namespace LPP.Helpers
         private int[] GetRow(int rowNumber, int[ , ] table)
         {
             int[] values = new int[table.GetLength(1)];
-            for (int i = 0; i < table.GetLength(1) - 1; i++) //-1 because the last column is meant for the result value
+            for (int i = 0; i < table.GetLength(1); i++)
             {
                 values[i] = table[rowNumber, i];
             }
             return values;
         }
 
-        private Node ChangeValueOfLeaves(Node node, List<char> leaves, int[] newValues)
+        private BinaryTree ChangeValueOfLeaves(string formula, List<char> leaves, int[] newValues)
         {
-            if (node != null)
+            foreach (char c in formula)
             {
-                if (node is Leaf)
+                if (leaves.Contains(c))
                 {
-                    int index = Array.IndexOf(leaves.ToArray(), node.Value);
-                    node.Value = Convert.ToChar(newValues[index]);
+                    if(c != '0' && c != '1')
+                    {
+                        int index = Array.IndexOf(leaves.ToArray(), c);
+                        formula = formula.Replace(c, newValues[index] == 1 ? '1' : '0');
+                    }
                 }
-                node.leftChild = ChangeValueOfLeaves(node.leftChild, leaves, newValues);
-                node.rightChild = ChangeValueOfLeaves(node.rightChild, leaves, newValues);
-                return node;
             }
-            else
-            {
-                return node;
-            }
+            return new BinaryTree(formula);
         }
 
-        private string ReadTruthTable(List<char> variables, string formula, int[ , ] table)
+        private string ReadTruthTable(string truthTable, List<char> variables, string formula, int[ , ] table)
         {
-            string truthTable = "";
-            for (int i = 0; i < variables.Count; i++)
-            {
-                truthTable = truthTable + $" {variables[i]} |";
-            }
-            truthTable = truthTable + $" {formula} \r\n";
             for (int i = 0; i < table.GetLength(0); i++)
             {
                 int[] values = this.GetRow(i, table);
