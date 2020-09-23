@@ -36,7 +36,7 @@ namespace LPP
                     tree = new BinaryTree(formula);
                     this.binary_tree_pbx.ImageLocation = tree.GetTreeImage();
                     this.parsed_formula_lbl.Text = tree.PrintParsedFormula();
-                    this.formula_variables_lbl.Text = new string(tree.GetLeaves());
+                    this.truth_table_lbl.Text = tree.GetTruthTable();
                 }
             }
             catch (InvalidFormula ex)
@@ -52,8 +52,8 @@ namespace LPP
             this.input_process_btn.Text = "Process Input";
             this.formula_tbx.Text = "";
             this.parsed_formula_lbl.Text = "Parsed formula will be here";
-            this.formula_variables_lbl.Text = "Formula variables will be here";
             this.binary_tree_pbx.Image = Properties.Resources.tree_holder;
+            this.truth_table_lbl.Text = "";
         }
     }
 }

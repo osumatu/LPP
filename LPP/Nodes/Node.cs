@@ -8,7 +8,7 @@ namespace LPP.Nodes
     {
         public Node leftChild { get; set; }
         public Node rightChild { get; set; }
-        public char Value { get; protected set; }
+        public char Value { get; set; }
 
         public Node(Node leftChild, Node rightChild, char value)
         {
@@ -21,6 +21,8 @@ namespace LPP.Nodes
             this.leftChild = leftChild;
             this.rightChild = rightChild;
         }
+
+        public abstract bool CalculateTTValue();
 
         public override string ToString()
         {

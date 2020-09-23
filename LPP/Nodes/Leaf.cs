@@ -11,9 +11,16 @@ namespace LPP.Nodes
             this.Value = value;
         }
 
+        public override bool CalculateTTValue()
+        {
+            return this.Value == '1' ? true : false;
+        }
+
         public override string ToString()
         {
             return this.Value.ToString();
         }
+
+
     }
 }

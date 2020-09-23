@@ -34,7 +34,6 @@
             this.binary_tree_pbx = new System.Windows.Forms.PictureBox();
             this.parsed_formula_lbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.formula_variables_lbl = new System.Windows.Forms.Label();
             this.exception_lbl = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -49,13 +48,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.truth_table_gbx = new System.Windows.Forms.GroupBox();
+            this.truth_table_lbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.binary_tree_pbx)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.truth_table_gbx.SuspendLayout();
             this.SuspendLayout();
             // 
             // input_process_btn
             // 
-            this.input_process_btn.Location = new System.Drawing.Point(500, 369);
+            this.input_process_btn.Location = new System.Drawing.Point(809, 369);
             this.input_process_btn.Name = "input_process_btn";
             this.input_process_btn.Size = new System.Drawing.Size(194, 110);
             this.input_process_btn.TabIndex = 0;
@@ -89,6 +91,7 @@
             this.parsed_formula_lbl.Size = new System.Drawing.Size(276, 30);
             this.parsed_formula_lbl.TabIndex = 3;
             this.parsed_formula_lbl.Text = "Parsed formula will be here";
+            this.parsed_formula_lbl.UseMnemonic = false;
             // 
             // label1
             // 
@@ -99,16 +102,6 @@
             this.label1.Size = new System.Drawing.Size(316, 30);
             this.label1.TabIndex = 4;
             this.label1.Text = "Type in formula in ASCII format";
-            // 
-            // formula_variables_lbl
-            // 
-            this.formula_variables_lbl.AutoSize = true;
-            this.formula_variables_lbl.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.formula_variables_lbl.Location = new System.Drawing.Point(57, 492);
-            this.formula_variables_lbl.Name = "formula_variables_lbl";
-            this.formula_variables_lbl.Size = new System.Drawing.Size(301, 30);
-            this.formula_variables_lbl.TabIndex = 3;
-            this.formula_variables_lbl.Text = "Formula variables will be here";
             // 
             // exception_lbl
             // 
@@ -135,7 +128,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox1.ForeColor = System.Drawing.Color.Green;
-            this.groupBox1.Location = new System.Drawing.Point(439, 83);
+            this.groupBox1.Location = new System.Drawing.Point(748, 80);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(303, 247);
             this.groupBox1.TabIndex = 6;
@@ -278,14 +271,36 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Logic notation";
             // 
+            // truth_table_gbx
+            // 
+            this.truth_table_gbx.Controls.Add(this.truth_table_lbl);
+            this.truth_table_gbx.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.truth_table_gbx.ForeColor = System.Drawing.Color.Green;
+            this.truth_table_gbx.Location = new System.Drawing.Point(407, 80);
+            this.truth_table_gbx.Name = "truth_table_gbx";
+            this.truth_table_gbx.Size = new System.Drawing.Size(320, 409);
+            this.truth_table_gbx.TabIndex = 7;
+            this.truth_table_gbx.TabStop = false;
+            this.truth_table_gbx.Text = "Truth table";
+            // 
+            // truth_table_lbl
+            // 
+            this.truth_table_lbl.AutoSize = true;
+            this.truth_table_lbl.ForeColor = System.Drawing.Color.Black;
+            this.truth_table_lbl.Location = new System.Drawing.Point(22, 68);
+            this.truth_table_lbl.Name = "truth_table_lbl";
+            this.truth_table_lbl.Size = new System.Drawing.Size(0, 30);
+            this.truth_table_lbl.TabIndex = 0;
+            this.truth_table_lbl.UseMnemonic = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 546);
+            this.ClientSize = new System.Drawing.Size(1150, 546);
+            this.Controls.Add(this.truth_table_gbx);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.exception_lbl);
-            this.Controls.Add(this.formula_variables_lbl);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.parsed_formula_lbl);
             this.Controls.Add(this.binary_tree_pbx);
@@ -295,6 +310,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.binary_tree_pbx)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.truth_table_gbx.ResumeLayout(false);
+            this.truth_table_gbx.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,7 +324,6 @@
         private System.Windows.Forms.PictureBox binary_tree_pbx;
         private System.Windows.Forms.Label parsed_formula_lbl;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label formula_variables_lbl;
         private System.Windows.Forms.Label exception_lbl;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
@@ -322,6 +338,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.GroupBox truth_table_gbx;
+        private System.Windows.Forms.Label truth_table_lbl;
     }
 }
 

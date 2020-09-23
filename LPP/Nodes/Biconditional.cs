@@ -10,5 +10,12 @@ namespace LPP.Nodes
         {
             this.Value = '=';
         }
+
+        public override bool CalculateTTValue()
+        {
+            Node l = new Implication(this.leftChild, this.rightChild);
+            Node r = new Implication(this.rightChild, this.leftChild);
+            return l.CalculateTTValue() && r.CalculateTTValue();
+        }
     }
 }
