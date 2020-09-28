@@ -6,11 +6,18 @@ using System.Text;
 
 namespace LPP.Helpers
 {
-    public class GraphHelper
+    /// <summary>
+    /// The GraphHelper class helps the main class BinaryTree to construct tree graph.
+    /// </summary>
+    public static class GraphHelper
     {
-        public string GenerateGraphFromTree(BinaryTree tree)
+
+        /// <summary>
+        /// This method generates the graph tree.png that illustrates provided Binary Tree.
+        /// </summary>
+        public static string GenerateGraphFromTree(BinaryTree tree)
         {
-            string fileName = this.GenerateFileInfoAboutTree(tree);
+            string fileName = GenerateFileInfoAboutTree(tree);
             string imageName = "tree.png";
             Process dot = new Process();
             dot.StartInfo.FileName = @"dot.exe";
@@ -20,19 +27,27 @@ namespace LPP.Helpers
             return imageName;
         }
 
-        private string GenerateFileInfoAboutTree(BinaryTree tree)
+
+        /// <summary>
+        /// This method generates the file tree.dot that contains information about provided Binary Tree.
+        /// </summary>
+        private static string GenerateFileInfoAboutTree(BinaryTree tree)
         {
             string name = "tree.dot";
             List<string> text = new List<string>();
             text.Add("graph logic {");
             text.Add("  node [ fontname = \"Arial\" ]");
-            this.PreOrderWalk(tree.Root, ref text, 1, 1);
+            PreOrderWalk(tree.Root, ref text, 1, 1);
             text.Add("}");
             System.IO.File.WriteAllLines(name, text);
             return name;
         }
 
-        private void PreOrderWalk(Node node, ref List<string> text, int i_parent, int i)
+        /// <summary>
+        /// This method adds to the existing description info about connection between tree 
+        /// nodes in preorder walk (Root - Left child- Right child) 
+        /// </summary>
+        private static void PreOrderWalk(Node node, ref List<string> text, int i_parent, int i)
         {
             if(node != null)
             {
@@ -41,6 +56,7 @@ namespace LPP.Helpers
                     text.Add($"  node{i_parent} -- node{i}");
                 }
                 text.Add($"  node{i} [ label = \" {node.Value} \" ]");
+                // the index is always even for left children and odd for right, so the won't ever repeat
                 PreOrderWalk(node.leftChild, ref text, i, i * 2);
                 PreOrderWalk(node.rightChild, ref text, i, i * 2 + 1);
             }
