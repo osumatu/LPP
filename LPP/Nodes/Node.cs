@@ -4,6 +4,11 @@ using System.Text;
 
 namespace LPP.Nodes
 {
+    /// <summary>
+    /// The abstract Node class.
+    /// Contains information about left and right child to ensure tree data structure.
+    /// Also, needed for calculating truth tables and displaying parsed formula.
+    /// </summary>
     public abstract class Node
     {
         public Node leftChild { get; set; }

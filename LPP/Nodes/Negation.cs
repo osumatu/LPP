@@ -8,7 +8,7 @@ namespace LPP.Nodes
     {
         public Negation(Node leftChild) : base(leftChild, null)
         {
-            this.Value = '~'; 
+            this.Value = '¬'; 
         }
 
         public override bool CalculateTTValue()

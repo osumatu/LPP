@@ -9,13 +9,17 @@ using System.Text.RegularExpressions;
 
 namespace LPP
 {
+    /// <summary>
+    /// The main Binary tree class.
+    /// Contains methods to create a binary tree and manipulate it.
+    /// </summary>
     public class BinaryTree
     {
         public Node Root { get; private set; }
         private List<char> leaves;
-        private GraphHelper graphHelper;
-        private TruthTableHelper truthTableHelper;
         private string intialFormula;
+
+        // Before creating a binary tree, the provided formula is validated
         public BinaryTree(string formula)
         {
             this.leaves = new List<char>();
@@ -23,8 +27,6 @@ namespace LPP
             formula = formula.Replace(" ", "");
             this.IsFormulaValid(formula);
             this.Root = this.CreateABinaryTree(ref formula, null);
-            graphHelper = new GraphHelper();
-            truthTableHelper = new TruthTableHelper();
         }
 
         public string PrintParsedFormula()
@@ -34,7 +36,7 @@ namespace LPP
 
         public string GetTruthTable()
         {
-            return this.truthTableHelper.GenerateTruthTable(this, this.intialFormula);
+            return TruthTableHelper.GenerateTruthTable(this, this.intialFormula);
         }
 
         public List<char> GetLeaves()
@@ -45,14 +47,20 @@ namespace LPP
 
         public string GetTreeImage()
         {
-            return this.graphHelper.GenerateGraphFromTree(this);
+            return GraphHelper.GenerateGraphFromTree(this);
         }
 
         private bool IsFormulaValid(string formula)
         {
-            string pattern = @"^([a-zA-Z0-1]|(((([=|>&](?<BR>\())+([~](?<NEG>\())*)|(([~](?<NEG>\())+([=|>&](?<BR>\())*))+[a-zA-Z0-1]{1}(?<-NEG>\))?(,(([=|>&](?<BR>\())*([~](?<NEG>\())*)*[a-zA-Z0-1]{1}(?(<NEG>)(?<-NEG>\))|(?<-BR>\))))*(?<-BR>\))*(?<-NEG>\))*)(?(BR)(?!))(?(NEG)(?!))(?(CM)(?!)))$";
-            Regex notAllowedCharacters = new Regex(pattern);
-            if (!notAllowedCharacters.IsMatch(formula))
+            // The regex is created depicturing rather ~(A) or [&|>=](A,B) type, so by continuous check 
+            // and simplification we can see if the formula ends up correctly
+            string pattern = @"([~]\([A-Z0-1]\))|([&|>=]\([A-Z0-1],[A-Z0-1]\))";
+            Regex r = new Regex(pattern);
+            while (r.Match(formula).Success)
+            {
+                formula = r.Replace(formula, "A");
+            }
+            if(formula!="A")
             {
                 throw new InvalidFormula("Provided formula is invalid, try again!");
             }
