@@ -8,7 +8,7 @@ namespace LPP.Nodes
     {
         public Biconditional(Node leftChild, Node rightChild) : base(leftChild, rightChild)
         {
-            this.Value = '=';
+            this.Value = '⇔';
         }
 
         public override bool CalculateTTValue()

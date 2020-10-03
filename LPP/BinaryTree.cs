@@ -19,7 +19,7 @@ namespace LPP
         private List<char> leaves;
         private string intialFormula;
 
-        //Before creating a binary tree, the provided formula is validated
+        // Before creating a binary tree, the provided formula is validated
         public BinaryTree(string formula)
         {
             this.leaves = new List<char>();
@@ -52,11 +52,15 @@ namespace LPP
 
         private bool IsFormulaValid(string formula)
         {
-            // The regex is created using balancing groups, 
-            // to ensure the same amount of closing and opening parentheses
-            string pattern = @"^([a-zA-Z0-1]|(((([=|>&](?<BR>\())+([~](?<NEG>\())*)|(([~](?<NEG>\())+([=|>&](?<BR>\())*))+[a-zA-Z0-1]{1}(?<-NEG>\))?(,(([=|>&](?<BR>\())*([~](?<NEG>\())*)*[a-zA-Z0-1]{1}(?(<NEG>)(?<-NEG>\))|(?<-BR>\))))*(?<-BR>\))*(?<-NEG>\))*)(?(BR)(?!))(?(NEG)(?!))(?(CM)(?!)))$";
-            Regex notAllowedCharacters = new Regex(pattern);
-            if (!notAllowedCharacters.IsMatch(formula))
+            // The regex is created depicturing rather ~(A) or [&|>=](A,B) type, so by continuous check 
+            // and simplification we can see if the formula ends up correctly
+            string pattern = @"([~]\([A-Z0-1]\))|([&|>=]\([A-Z0-1],[A-Z0-1]\))";
+            Regex r = new Regex(pattern);
+            while (r.Match(formula).Success)
+            {
+                formula = r.Replace(formula, "A");
+            }
+            if(formula!="A")
             {
                 throw new InvalidFormula("Provided formula is invalid, try again!");
             }

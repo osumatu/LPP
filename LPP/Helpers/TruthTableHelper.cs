@@ -22,7 +22,7 @@ namespace LPP.Helpers
             {
                 truthTable = truthTable + $" {variables[i]} |";
             }
-            truthTable = truthTable + $" {tree.PrintParsedFormula()} \r\n";
+            truthTable = truthTable + $" Formula \r\n";
 
             // If the formula contains only of 0's and 1's the answer of the expression is  
             // immediately calculated and the corresponding row is added to the table

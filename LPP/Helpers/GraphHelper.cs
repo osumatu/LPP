@@ -45,7 +45,7 @@ namespace LPP.Helpers
 
         /// <summary>
         /// This method adds to the existing description info about connection between tree 
-        /// nodes in preorder walk (Root - Left child- Right child) 
+        /// nodes in preorder walk (Root - Left child- Right child).
         /// </summary>
         private static void PreOrderWalk(Node node, ref List<string> text, int i_parent, int i)
         {
