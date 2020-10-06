@@ -300,7 +300,7 @@
             // 
             this.simplified_table_lbl.AutoSize = true;
             this.simplified_table_lbl.ForeColor = System.Drawing.Color.Black;
-            this.simplified_table_lbl.Location = new System.Drawing.Point(22, 68);
+            this.simplified_table_lbl.Location = new System.Drawing.Point(22, 38);
             this.simplified_table_lbl.Name = "simplified_table_lbl";
             this.simplified_table_lbl.Size = new System.Drawing.Size(0, 30);
             this.simplified_table_lbl.TabIndex = 0;
@@ -368,7 +368,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox truth_table_gbx;
         private System.Windows.Forms.Label truth_table_lbl;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.GroupBox simplified_table_gbx;
         private System.Windows.Forms.Label simplified_table_lbl;
     }

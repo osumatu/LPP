@@ -17,16 +17,17 @@ namespace LPP
     {
         public Node Root { get; private set; }
         private List<char> leaves;
-        private string intialFormula;
+        public string Formula { get; private set; }
+        private TruthTable truthtable;
 
         // Before creating a binary tree, the provided formula is validated
         public BinaryTree(string formula)
         {
             this.leaves = new List<char>();
-            this.intialFormula = formula;
-            formula = formula.Replace(" ", "");
+            this.Formula = formula.Replace(" ", "");
             this.IsFormulaValid(formula);
             this.Root = this.CreateABinaryTree(ref formula, null);
+            this.truthtable = new TruthTable(this);
         }
 
         public string PrintParsedFormula()
@@ -36,7 +37,12 @@ namespace LPP
 
         public string GetTruthTable()
         {
-            return TruthTableHelper.GenerateTruthTable(this, this.intialFormula);
+            return this.truthtable.GetTruthTable();
+        }
+
+        public string GetSimplifiedTruthTable()
+        {
+            return this.truthtable.GetSimplifiedTruthTable();
         }
 
         public List<char> GetLeaves()
