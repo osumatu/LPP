@@ -24,8 +24,9 @@ namespace LPP
         public BinaryTree(string formula)
         {
             this.leaves = new List<char>();
-            this.Formula = formula.Replace(" ", "");
+            formula = formula.Replace(" ", "");
             this.IsFormulaValid(formula);
+            this.Formula = formula;
             this.Root = this.CreateABinaryTree(ref formula, null);
             this.truthtable = new TruthTable(this);
         }
@@ -35,14 +36,19 @@ namespace LPP
             return this.Root.ToString();
         }
 
-        public string GetTruthTable()
+        public char[][] GetTruthTable()
         {
             return this.truthtable.GetTruthTable();
         }
 
-        public string GetSimplifiedTruthTable()
+        public char[][] GetSimplifiedTruthTable()
         {
             return this.truthtable.GetSimplifiedTruthTable();
+        }
+
+        public string[] GetTableHeaders()
+        {
+            return this.truthtable.GetHeaders();
         }
 
         public List<char> GetLeaves()
@@ -60,7 +66,7 @@ namespace LPP
         {
             // The regex is created depicturing rather ~(A) or [&|>=](A,B) type, so by continuous check 
             // and simplification we can see if the formula ends up correctly
-            string pattern = @"([~]\([A-Z0-1]\))|([&|>=]\([A-Z0-1],[A-Z0-1]\))";
+            string pattern = @"([~]\([A-Z0-1a-z]\))|([&|>=]\([A-Z0-1a-z],[A-Z0-1a-z]\))";
             Regex r = new Regex(pattern);
             while (r.Match(formula).Success)
             {
