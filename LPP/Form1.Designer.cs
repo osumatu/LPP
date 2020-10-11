@@ -1,4 +1,7 @@
-﻿namespace LPP
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace LPP
 {
     partial class Form1
     {
@@ -29,6 +32,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.truthTableGridView = new System.Windows.Forms.DataGridView();
+            this.simplifiedTruthTableGridView = new System.Windows.Forms.DataGridView();
             this.input_process_btn = new System.Windows.Forms.Button();
             this.formula_tbx = new System.Windows.Forms.TextBox();
             this.binary_tree_pbx = new System.Windows.Forms.PictureBox();
@@ -48,21 +53,56 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.truth_table_gbx = new System.Windows.Forms.GroupBox();
-            this.truth_table_lbl = new System.Windows.Forms.Label();
-            this.simplified_table_lbl = new System.Windows.Forms.Label();
-            this.simplified_table_gbx = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.dnf_original_lbl = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.hash_code_lbl = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.dnf_simplified_lbl = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.truthTableGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simplifiedTruthTableGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.binary_tree_pbx)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.truth_table_gbx.SuspendLayout();
-            this.simplified_table_gbx.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // truthTableGridView
+            // 
+            this.truthTableGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.truthTableGridView.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.truthTableGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.truthTableGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.truthTableGridView.Location = new System.Drawing.Point(412, 115);
+            this.truthTableGridView.Margin = new System.Windows.Forms.Padding(20);
+            this.truthTableGridView.Name = "truthTableGridView";
+            this.truthTableGridView.RowHeadersWidth = 62;
+            this.truthTableGridView.Size = new System.Drawing.Size(300, 400);
+            this.truthTableGridView.TabIndex = 0;
+            // 
+            // simplifiedTruthTableGridView
+            // 
+            this.simplifiedTruthTableGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.simplifiedTruthTableGridView.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.simplifiedTruthTableGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.simplifiedTruthTableGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.simplifiedTruthTableGridView.Location = new System.Drawing.Point(412, 567);
+            this.simplifiedTruthTableGridView.Margin = new System.Windows.Forms.Padding(20);
+            this.simplifiedTruthTableGridView.Name = "simplifiedTruthTableGridView";
+            this.simplifiedTruthTableGridView.RowHeadersWidth = 62;
+            this.simplifiedTruthTableGridView.Size = new System.Drawing.Size(300, 310);
+            this.simplifiedTruthTableGridView.TabIndex = 0;
             // 
             // input_process_btn
             // 
-            this.input_process_btn.Location = new System.Drawing.Point(809, 369);
+            this.input_process_btn.Location = new System.Drawing.Point(57, 146);
             this.input_process_btn.Name = "input_process_btn";
-            this.input_process_btn.Size = new System.Drawing.Size(194, 110);
+            this.input_process_btn.Size = new System.Drawing.Size(314, 59);
             this.input_process_btn.TabIndex = 0;
             this.input_process_btn.Text = "Process Input";
             this.input_process_btn.UseVisualStyleBackColor = true;
@@ -78,9 +118,9 @@
             // binary_tree_pbx
             // 
             this.binary_tree_pbx.Image = ((System.Drawing.Image)(resources.GetObject("binary_tree_pbx.Image")));
-            this.binary_tree_pbx.Location = new System.Drawing.Point(57, 185);
+            this.binary_tree_pbx.Location = new System.Drawing.Point(735, 344);
             this.binary_tree_pbx.Name = "binary_tree_pbx";
-            this.binary_tree_pbx.Size = new System.Drawing.Size(314, 304);
+            this.binary_tree_pbx.Size = new System.Drawing.Size(489, 533);
             this.binary_tree_pbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.binary_tree_pbx.TabIndex = 2;
             this.binary_tree_pbx.TabStop = false;
@@ -89,11 +129,12 @@
             // 
             this.parsed_formula_lbl.AutoSize = true;
             this.parsed_formula_lbl.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.parsed_formula_lbl.Location = new System.Drawing.Point(57, 148);
+            this.parsed_formula_lbl.Location = new System.Drawing.Point(3, 15);
+            this.parsed_formula_lbl.MaximumSize = new System.Drawing.Size(0, 29);
             this.parsed_formula_lbl.Name = "parsed_formula_lbl";
-            this.parsed_formula_lbl.Size = new System.Drawing.Size(276, 30);
+            this.parsed_formula_lbl.Size = new System.Drawing.Size(228, 29);
             this.parsed_formula_lbl.TabIndex = 3;
-            this.parsed_formula_lbl.Text = "Parsed formula will be here";
+            this.parsed_formula_lbl.Text = "Future parsed formula";
             this.parsed_formula_lbl.UseMnemonic = false;
             // 
             // label1
@@ -274,72 +315,133 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Logic notation";
             // 
-            // truth_table_gbx
+            // panel1
             // 
-            this.truth_table_gbx.Controls.Add(this.truth_table_lbl);
-            this.truth_table_gbx.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.truth_table_gbx.ForeColor = System.Drawing.Color.Green;
-            this.truth_table_gbx.Location = new System.Drawing.Point(407, 80);
-            this.truth_table_gbx.Name = "truth_table_gbx";
-            this.truth_table_gbx.Size = new System.Drawing.Size(320, 409);
-            this.truth_table_gbx.TabIndex = 7;
-            this.truth_table_gbx.TabStop = false;
-            this.truth_table_gbx.Text = "Truth table";
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.parsed_formula_lbl);
+            this.panel1.Location = new System.Drawing.Point(57, 311);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(314, 74);
+            this.panel1.TabIndex = 8;
             // 
-            // truth_table_lbl
+            // label14
             // 
-            this.truth_table_lbl.AutoSize = true;
-            this.truth_table_lbl.ForeColor = System.Drawing.Color.Black;
-            this.truth_table_lbl.Location = new System.Drawing.Point(22, 68);
-            this.truth_table_lbl.Name = "truth_table_lbl";
-            this.truth_table_lbl.Size = new System.Drawing.Size(0, 30);
-            this.truth_table_lbl.TabIndex = 0;
-            this.truth_table_lbl.UseMnemonic = false;
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label14.ForeColor = System.Drawing.Color.Green;
+            this.label14.Location = new System.Drawing.Point(412, 535);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(215, 30);
+            this.label14.TabIndex = 9;
+            this.label14.Text = "Simplified truth table";
             // 
-            // simplified_table_lbl
+            // label15
             // 
-            this.simplified_table_lbl.AutoSize = true;
-            this.simplified_table_lbl.ForeColor = System.Drawing.Color.Black;
-            this.simplified_table_lbl.Location = new System.Drawing.Point(22, 68);
-            this.simplified_table_lbl.Name = "simplified_table_lbl";
-            this.simplified_table_lbl.Size = new System.Drawing.Size(0, 30);
-            this.simplified_table_lbl.TabIndex = 0;
-            this.simplified_table_lbl.UseMnemonic = false;
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label15.ForeColor = System.Drawing.Color.Green;
+            this.label15.Location = new System.Drawing.Point(412, 80);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(116, 30);
+            this.label15.TabIndex = 9;
+            this.label15.Text = "Truth table";
             // 
-            // simplified_table_gbx
+            // dnf_original_lbl
             // 
-            this.simplified_table_gbx.Controls.Add(this.simplified_table_lbl);
-            this.simplified_table_gbx.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.simplified_table_gbx.ForeColor = System.Drawing.Color.Green;
-            this.simplified_table_gbx.Location = new System.Drawing.Point(407, 526);
-            this.simplified_table_gbx.Name = "simplified_table_gbx";
-            this.simplified_table_gbx.Size = new System.Drawing.Size(320, 293);
-            this.simplified_table_gbx.TabIndex = 7;
-            this.simplified_table_gbx.TabStop = false;
-            this.simplified_table_gbx.Text = "Simplified truth table";
+            this.dnf_original_lbl.AutoSize = true;
+            this.dnf_original_lbl.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dnf_original_lbl.Location = new System.Drawing.Point(3, 15);
+            this.dnf_original_lbl.MaximumSize = new System.Drawing.Size(0, 29);
+            this.dnf_original_lbl.Name = "dnf_original_lbl";
+            this.dnf_original_lbl.Size = new System.Drawing.Size(257, 29);
+            this.dnf_original_lbl.TabIndex = 3;
+            this.dnf_original_lbl.Text = "Future DNF of original TT";
+            this.dnf_original_lbl.UseMnemonic = false;
+            // 
+            // panel2
+            // 
+            this.panel2.AutoScroll = true;
+            this.panel2.Controls.Add(this.dnf_original_lbl);
+            this.panel2.Location = new System.Drawing.Point(57, 399);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(314, 74);
+            this.panel2.TabIndex = 8;
+            // 
+            // hash_code_lbl
+            // 
+            this.hash_code_lbl.AutoSize = true;
+            this.hash_code_lbl.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.hash_code_lbl.Location = new System.Drawing.Point(3, 15);
+            this.hash_code_lbl.MaximumSize = new System.Drawing.Size(0, 29);
+            this.hash_code_lbl.Name = "hash_code_lbl";
+            this.hash_code_lbl.Size = new System.Drawing.Size(179, 29);
+            this.hash_code_lbl.TabIndex = 3;
+            this.hash_code_lbl.Text = "Future hash code";
+            this.hash_code_lbl.UseMnemonic = false;
+            // 
+            // panel3
+            // 
+            this.panel3.AutoScroll = true;
+            this.panel3.Controls.Add(this.hash_code_lbl);
+            this.panel3.Location = new System.Drawing.Point(57, 221);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(314, 74);
+            this.panel3.TabIndex = 8;
+            // 
+            // dnf_simplified_lbl
+            // 
+            this.dnf_simplified_lbl.AutoSize = true;
+            this.dnf_simplified_lbl.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dnf_simplified_lbl.Location = new System.Drawing.Point(3, 15);
+            this.dnf_simplified_lbl.MaximumSize = new System.Drawing.Size(0, 29);
+            this.dnf_simplified_lbl.Name = "dnf_simplified_lbl";
+            this.dnf_simplified_lbl.Size = new System.Drawing.Size(278, 29);
+            this.dnf_simplified_lbl.TabIndex = 3;
+            this.dnf_simplified_lbl.Text = "Future DNF of simplified TT";
+            this.dnf_simplified_lbl.UseMnemonic = false;
+            // 
+            // panel4
+            // 
+            this.panel4.AutoScroll = true;
+            this.panel4.Controls.Add(this.dnf_simplified_lbl);
+            this.panel4.Location = new System.Drawing.Point(57, 489);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(314, 74);
+            this.panel4.TabIndex = 8;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1198, 898);
-            this.Controls.Add(this.simplified_table_gbx);
-            this.Controls.Add(this.truth_table_gbx);
+            this.ClientSize = new System.Drawing.Size(1236, 898);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.exception_lbl);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.parsed_formula_lbl);
             this.Controls.Add(this.binary_tree_pbx);
             this.Controls.Add(this.formula_tbx);
             this.Controls.Add(this.input_process_btn);
+            this.Controls.Add(this.truthTableGridView);
+            this.Controls.Add(this.simplifiedTruthTableGridView);
             this.Name = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.truthTableGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simplifiedTruthTableGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.binary_tree_pbx)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.truth_table_gbx.ResumeLayout(false);
-            this.truth_table_gbx.PerformLayout();
-            this.simplified_table_gbx.ResumeLayout(false);
-            this.simplified_table_gbx.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -348,6 +450,8 @@
         #endregion
 
         private System.Windows.Forms.Button input_process_btn;
+        private System.Windows.Forms.DataGridView truthTableGridView;
+        private System.Windows.Forms.DataGridView simplifiedTruthTableGridView;
         private System.Windows.Forms.TextBox formula_tbx;
         private System.Windows.Forms.PictureBox binary_tree_pbx;
         private System.Windows.Forms.Label parsed_formula_lbl;
@@ -366,11 +470,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.GroupBox truth_table_gbx;
-        private System.Windows.Forms.Label truth_table_lbl;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.GroupBox simplified_table_gbx;
-        private System.Windows.Forms.Label simplified_table_lbl;
+        private System.Windows.Forms.Panel panel1;
+        private Label label14;
+        private Label label15;
+        private Label dnf_original_lbl;
+        private Panel panel2;
+        private Label hash_code_lbl;
+        private Panel panel3;
+        private Label dnf_simplified_lbl;
+        private Panel panel4;
     }
 }
 

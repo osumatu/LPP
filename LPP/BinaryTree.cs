@@ -17,16 +17,18 @@ namespace LPP
     {
         public Node Root { get; private set; }
         private List<char> leaves;
-        private string intialFormula;
+        public string Formula { get; private set; }
+        private TruthTable truthtable;
 
         // Before creating a binary tree, the provided formula is validated
         public BinaryTree(string formula)
         {
             this.leaves = new List<char>();
-            this.intialFormula = formula;
             formula = formula.Replace(" ", "");
             this.IsFormulaValid(formula);
+            this.Formula = formula;
             this.Root = this.CreateABinaryTree(ref formula, null);
+            this.truthtable = new TruthTable(this);
         }
 
         public string PrintParsedFormula()
@@ -34,9 +36,19 @@ namespace LPP
             return this.Root.ToString();
         }
 
-        public string GetTruthTable()
+        public char[][] GetTruthTable()
         {
-            return TruthTableHelper.GenerateTruthTable(this, this.intialFormula);
+            return this.truthtable.GetTruthTable();
+        }
+
+        public char[][] GetSimplifiedTruthTable()
+        {
+            return this.truthtable.GetSimplifiedTruthTable();
+        }
+
+        public string[] GetTableHeaders()
+        {
+            return this.truthtable.GetHeaders();
         }
 
         public List<char> GetLeaves()
@@ -54,7 +66,7 @@ namespace LPP
         {
             // The regex is created depicturing rather ~(A) or [&|>=](A,B) type, so by continuous check 
             // and simplification we can see if the formula ends up correctly
-            string pattern = @"([~]\([A-Z0-1]\))|([&|>=]\([A-Z0-1],[A-Z0-1]\))";
+            string pattern = @"([~]\([A-Z0-1a-z]\))|([&|>=]\([A-Z0-1a-z],[A-Z0-1a-z]\))";
             Regex r = new Regex(pattern);
             while (r.Match(formula).Success)
             {

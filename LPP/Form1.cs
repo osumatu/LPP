@@ -36,7 +36,11 @@ namespace LPP
                     tree = new BinaryTree(formula);
                     this.binary_tree_pbx.ImageLocation = tree.GetTreeImage();
                     this.parsed_formula_lbl.Text = tree.PrintParsedFormula();
-                    this.truth_table_lbl.Text = tree.GetTruthTable();
+                    this.GenerateGridView(ref truthTableGridView, this.tree.GetTruthTable(), this.tree.GetTableHeaders());
+                    this.simplifiedTruthTableGridView.Visible = true;
+                    this.GenerateGridView(ref simplifiedTruthTableGridView, this.tree.GetSimplifiedTruthTable(), this.tree.GetTableHeaders());
+                    tree.GetTruthTable();
+                    tree.GetSimplifiedTruthTable();
                 }
             }
             catch (InvalidFormula ex)
@@ -50,10 +54,38 @@ namespace LPP
         private void CleanFormControllers()
         {
             this.input_process_btn.Text = "Process Input";
+            this.truthTableGridView.Rows.Clear();
+            this.truthTableGridView.Columns.Clear();
+            this.truthTableGridView.Refresh();
+            this.simplifiedTruthTableGridView.Rows.Clear();
+            this.simplifiedTruthTableGridView.Columns.Clear();
+            this.simplifiedTruthTableGridView.Refresh();
             this.formula_tbx.Text = "";
-            this.parsed_formula_lbl.Text = "Parsed formula will be here";
+            this.parsed_formula_lbl.Text = "Future parsed formula";
+            this.hash_code_lbl.Text = "Future hash code";
+            this.dnf_original_lbl.Text = "Future DNF of original TT";
+            this.dnf_simplified_lbl.Text = "Future DNF of simplified TT";
             this.binary_tree_pbx.Image = Properties.Resources.tree_holder;
-            this.truth_table_lbl.Text = "";
+        }
+
+        private void GenerateGridView(ref DataGridView view, char[][] data, string[] headers)
+        {
+            view.ColumnCount = headers.Count();
+            view.ColumnHeadersVisible = true;
+            DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
+            columnHeaderStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            view.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
+
+            for (int i = 0; i < headers.Count(); i++)
+            {
+                view.Columns[i].Name = headers[i];
+                view.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+            for (int i = 0; i < data.GetLength(0); i++)
+            {
+                var dataString = data[i].Select(c => c.ToString()).ToArray();
+                view.Rows.Add(dataString);
+            }
         }
     }
 }
