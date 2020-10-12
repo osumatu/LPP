@@ -56,12 +56,22 @@ namespace LPP
             this.panel1 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.dnf_original_lbl = new System.Windows.Forms.Label();
+            this.dnf_original_infix_lbl = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dnf_original_prefix_lbl = new System.Windows.Forms.Label();
             this.hash_code_lbl = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dnf_simplified_lbl = new System.Windows.Forms.Label();
+            this.dnf_simplified_infix_lbl = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.dnf_simplified_prefix_lbl = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.truthTableGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simplifiedTruthTableGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.binary_tree_pbx)).BeginInit();
@@ -128,13 +138,12 @@ namespace LPP
             // parsed_formula_lbl
             // 
             this.parsed_formula_lbl.AutoSize = true;
-            this.parsed_formula_lbl.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.parsed_formula_lbl.Location = new System.Drawing.Point(3, 15);
+            this.parsed_formula_lbl.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.parsed_formula_lbl.Location = new System.Drawing.Point(3, 12);
             this.parsed_formula_lbl.MaximumSize = new System.Drawing.Size(0, 29);
             this.parsed_formula_lbl.Name = "parsed_formula_lbl";
-            this.parsed_formula_lbl.Size = new System.Drawing.Size(228, 29);
+            this.parsed_formula_lbl.Size = new System.Drawing.Size(0, 28);
             this.parsed_formula_lbl.TabIndex = 3;
-            this.parsed_formula_lbl.Text = "Future parsed formula";
             this.parsed_formula_lbl.UseMnemonic = false;
             // 
             // label1
@@ -319,7 +328,7 @@ namespace LPP
             // 
             this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.parsed_formula_lbl);
-            this.panel1.Location = new System.Drawing.Point(57, 311);
+            this.panel1.Location = new System.Drawing.Point(57, 361);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(314, 74);
             this.panel1.TabIndex = 8;
@@ -346,74 +355,184 @@ namespace LPP
             this.label15.TabIndex = 9;
             this.label15.Text = "Truth table";
             // 
-            // dnf_original_lbl
+            // dnf_original_infix_lbl
             // 
-            this.dnf_original_lbl.AutoSize = true;
-            this.dnf_original_lbl.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dnf_original_lbl.Location = new System.Drawing.Point(3, 15);
-            this.dnf_original_lbl.MaximumSize = new System.Drawing.Size(0, 29);
-            this.dnf_original_lbl.Name = "dnf_original_lbl";
-            this.dnf_original_lbl.Size = new System.Drawing.Size(257, 29);
-            this.dnf_original_lbl.TabIndex = 3;
-            this.dnf_original_lbl.Text = "Future DNF of original TT";
-            this.dnf_original_lbl.UseMnemonic = false;
+            this.dnf_original_infix_lbl.AutoSize = true;
+            this.dnf_original_infix_lbl.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dnf_original_infix_lbl.Location = new System.Drawing.Point(3, 57);
+            this.dnf_original_infix_lbl.MaximumSize = new System.Drawing.Size(0, 29);
+            this.dnf_original_infix_lbl.Name = "dnf_original_infix_lbl";
+            this.dnf_original_infix_lbl.Size = new System.Drawing.Size(0, 28);
+            this.dnf_original_infix_lbl.TabIndex = 3;
+            this.dnf_original_infix_lbl.UseMnemonic = false;
             // 
             // panel2
             // 
             this.panel2.AutoScroll = true;
-            this.panel2.Controls.Add(this.dnf_original_lbl);
-            this.panel2.Location = new System.Drawing.Point(57, 399);
+            this.panel2.Controls.Add(this.dnf_original_prefix_lbl);
+            this.panel2.Controls.Add(this.dnf_original_infix_lbl);
+            this.panel2.Location = new System.Drawing.Point(57, 453);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(314, 74);
+            this.panel2.Size = new System.Drawing.Size(314, 127);
             this.panel2.TabIndex = 8;
+            // 
+            // dnf_original_prefix_lbl
+            // 
+            this.dnf_original_prefix_lbl.AutoSize = true;
+            this.dnf_original_prefix_lbl.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dnf_original_prefix_lbl.Location = new System.Drawing.Point(3, 18);
+            this.dnf_original_prefix_lbl.MaximumSize = new System.Drawing.Size(0, 29);
+            this.dnf_original_prefix_lbl.Name = "dnf_original_prefix_lbl";
+            this.dnf_original_prefix_lbl.Size = new System.Drawing.Size(0, 28);
+            this.dnf_original_prefix_lbl.TabIndex = 3;
+            this.dnf_original_prefix_lbl.UseMnemonic = false;
             // 
             // hash_code_lbl
             // 
             this.hash_code_lbl.AutoSize = true;
-            this.hash_code_lbl.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.hash_code_lbl.Location = new System.Drawing.Point(3, 15);
+            this.hash_code_lbl.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.hash_code_lbl.Location = new System.Drawing.Point(3, 12);
             this.hash_code_lbl.MaximumSize = new System.Drawing.Size(0, 29);
             this.hash_code_lbl.Name = "hash_code_lbl";
-            this.hash_code_lbl.Size = new System.Drawing.Size(179, 29);
+            this.hash_code_lbl.Size = new System.Drawing.Size(0, 28);
             this.hash_code_lbl.TabIndex = 3;
-            this.hash_code_lbl.Text = "Future hash code";
             this.hash_code_lbl.UseMnemonic = false;
             // 
             // panel3
             // 
             this.panel3.AutoScroll = true;
             this.panel3.Controls.Add(this.hash_code_lbl);
-            this.panel3.Location = new System.Drawing.Point(57, 221);
+            this.panel3.Location = new System.Drawing.Point(57, 251);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(314, 74);
             this.panel3.TabIndex = 8;
             // 
-            // dnf_simplified_lbl
+            // dnf_simplified_infix_lbl
             // 
-            this.dnf_simplified_lbl.AutoSize = true;
-            this.dnf_simplified_lbl.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dnf_simplified_lbl.Location = new System.Drawing.Point(3, 15);
-            this.dnf_simplified_lbl.MaximumSize = new System.Drawing.Size(0, 29);
-            this.dnf_simplified_lbl.Name = "dnf_simplified_lbl";
-            this.dnf_simplified_lbl.Size = new System.Drawing.Size(278, 29);
-            this.dnf_simplified_lbl.TabIndex = 3;
-            this.dnf_simplified_lbl.Text = "Future DNF of simplified TT";
-            this.dnf_simplified_lbl.UseMnemonic = false;
+            this.dnf_simplified_infix_lbl.AutoSize = true;
+            this.dnf_simplified_infix_lbl.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dnf_simplified_infix_lbl.Location = new System.Drawing.Point(3, 57);
+            this.dnf_simplified_infix_lbl.MaximumSize = new System.Drawing.Size(0, 29);
+            this.dnf_simplified_infix_lbl.Name = "dnf_simplified_infix_lbl";
+            this.dnf_simplified_infix_lbl.Size = new System.Drawing.Size(0, 28);
+            this.dnf_simplified_infix_lbl.TabIndex = 3;
+            this.dnf_simplified_infix_lbl.UseMnemonic = false;
             // 
             // panel4
             // 
             this.panel4.AutoScroll = true;
-            this.panel4.Controls.Add(this.dnf_simplified_lbl);
-            this.panel4.Location = new System.Drawing.Point(57, 489);
+            this.panel4.Controls.Add(this.dnf_simplified_prefix_lbl);
+            this.panel4.Controls.Add(this.dnf_simplified_infix_lbl);
+            this.panel4.Location = new System.Drawing.Point(57, 598);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(314, 74);
+            this.panel4.Size = new System.Drawing.Size(314, 127);
             this.panel4.TabIndex = 8;
+            // 
+            // dnf_simplified_prefix_lbl
+            // 
+            this.dnf_simplified_prefix_lbl.AutoSize = true;
+            this.dnf_simplified_prefix_lbl.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dnf_simplified_prefix_lbl.Location = new System.Drawing.Point(3, 18);
+            this.dnf_simplified_prefix_lbl.MaximumSize = new System.Drawing.Size(0, 29);
+            this.dnf_simplified_prefix_lbl.Name = "dnf_simplified_prefix_lbl";
+            this.dnf_simplified_prefix_lbl.Size = new System.Drawing.Size(0, 28);
+            this.dnf_simplified_prefix_lbl.TabIndex = 3;
+            this.dnf_simplified_prefix_lbl.UseMnemonic = false;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label16.Location = new System.Drawing.Point(57, 330);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(156, 28);
+            this.label16.TabIndex = 10;
+            this.label16.Text = "Parsed formula";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label17.Location = new System.Drawing.Point(57, 223);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(110, 28);
+            this.label17.TabIndex = 10;
+            this.label17.Text = "Hash code";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label18.Location = new System.Drawing.Point(57, 438);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(188, 28);
+            this.label18.TabIndex = 10;
+            this.label18.Text = "DNF of original TT";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label19.Location = new System.Drawing.Point(57, 583);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(209, 28);
+            this.label19.TabIndex = 10;
+            this.label19.Text = "DNF of simplified TT";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label20.Location = new System.Drawing.Point(4, 471);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(60, 28);
+            this.label20.TabIndex = 11;
+            this.label20.Text = "Prefix";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label21.Location = new System.Drawing.Point(4, 616);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(60, 28);
+            this.label21.TabIndex = 11;
+            this.label21.Text = "Prefix";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label22.Location = new System.Drawing.Point(16, 512);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(48, 28);
+            this.label22.TabIndex = 11;
+            this.label22.Text = "Infix";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label23.Location = new System.Drawing.Point(16, 655);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(48, 28);
+            this.label23.TabIndex = 11;
+            this.label23.Text = "Infix";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1236, 898);
+            this.Controls.Add(this.label23);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -473,12 +592,22 @@ namespace LPP
         private System.Windows.Forms.Panel panel1;
         private Label label14;
         private Label label15;
-        private Label dnf_original_lbl;
+        private Label dnf_original_infix_lbl;
         private Panel panel2;
         private Label hash_code_lbl;
         private Panel panel3;
-        private Label dnf_simplified_lbl;
+        private Label dnf_simplified_infix_lbl;
         private Panel panel4;
+        private Label label16;
+        private Label label17;
+        private Label label18;
+        private Label label19;
+        private Label dnf_original_prefix_lbl;
+        private Label dnf_simplified_prefix_lbl;
+        private Label label20;
+        private Label label21;
+        private Label label22;
+        private Label label23;
     }
 }
 
