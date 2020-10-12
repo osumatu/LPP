@@ -1,4 +1,5 @@
 ﻿using LPP.Exceptions;
+using LPP.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,11 +37,15 @@ namespace LPP
                     tree = new BinaryTree(formula);
                     this.binary_tree_pbx.ImageLocation = tree.GetTreeImage();
                     this.parsed_formula_lbl.Text = tree.PrintParsedFormula();
-                    this.GenerateGridView(ref truthTableGridView, this.tree.GetTruthTable(), this.tree.GetTableHeaders());
-                    this.simplifiedTruthTableGridView.Visible = true;
-                    this.GenerateGridView(ref simplifiedTruthTableGridView, this.tree.GetSimplifiedTruthTable(), this.tree.GetTableHeaders());
-                    tree.GetTruthTable();
-                    tree.GetSimplifiedTruthTable();
+                    this.GenerateGridView(ref truthTableGridView, this.tree.GetOriginalTable(), this.tree.GetTableHeaders());
+                    this.GenerateGridView(ref simplifiedTruthTableGridView, this.tree.GetSimplifiedTable(), this.tree.GetTableHeaders());
+                    this.hash_code_lbl.Text = tree.GetTruthTableHashCode();
+                    DNFModel dnfOfOriginalTable = tree.GetOriginalTableDNF();
+                    this.dnf_original_infix_lbl.Text = dnfOfOriginalTable.InfixFormat;
+                    this.dnf_original_prefix_lbl.Text = dnfOfOriginalTable.PrefixFormat;
+                    DNFModel dnfOfSimplifiedTable = tree.GetSimplifiedTableDNF();
+                    this.dnf_simplified_infix_lbl.Text = dnfOfSimplifiedTable.InfixFormat;
+                    this.dnf_simplified_prefix_lbl.Text = dnfOfSimplifiedTable.PrefixFormat;
                 }
             }
             catch (InvalidFormula ex)
@@ -61,10 +66,12 @@ namespace LPP
             this.simplifiedTruthTableGridView.Columns.Clear();
             this.simplifiedTruthTableGridView.Refresh();
             this.formula_tbx.Text = "";
-            this.parsed_formula_lbl.Text = "Future parsed formula";
-            this.hash_code_lbl.Text = "Future hash code";
-            this.dnf_original_lbl.Text = "Future DNF of original TT";
-            this.dnf_simplified_lbl.Text = "Future DNF of simplified TT";
+            this.parsed_formula_lbl.Text = "";
+            this.hash_code_lbl.Text = "";
+            this.dnf_original_infix_lbl.Text = "";
+            this.dnf_simplified_infix_lbl.Text = "";
+            this.dnf_original_prefix_lbl.Text = "";
+            this.dnf_simplified_prefix_lbl.Text = "";
             this.binary_tree_pbx.Image = Properties.Resources.tree_holder;
         }
 

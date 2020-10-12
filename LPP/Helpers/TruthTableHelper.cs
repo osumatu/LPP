@@ -1,21 +1,23 @@
 ﻿using LPP.Helpers;
+using LPP.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LPP
+namespace LPP.Helpers
 {
     /// <summary>
     /// The TruthTable class contains the information about thruth table constructed from BinaryTree.
     /// </summary>
-    public class TruthTable
+    public class TruthTableHelper
     {
-        private BinaryTree tree;
-        private char[][] table;
+        public char[][] OriginalTable { private set; get; }
+        public char[][] SimplifiedTable { private set; get; }
         private int nrOfColumns;
         private int nrOfRows;
+        private BinaryTree tree;
 
-        public TruthTable(BinaryTree tree)
+        public TruthTableHelper(BinaryTree tree)
         {
             this.tree = tree;
             // Amount of rows in the table equals to the number of possible combinations 
@@ -23,24 +25,8 @@ namespace LPP
             nrOfRows = (int)Math.Pow(2, tree.GetLeaves().Count);
             // Amount of columns equals the number of variables + 1 more for result
             nrOfColumns = tree.GetLeaves().Count + 1;
-            this.table = this.GenerateTruthTable();
-        }
-
-        /// <summary>
-        /// This method returns the truth table.
-        /// </summary>
-        public char[][] GetTruthTable()
-        {
-            return this.table;
-        }
-
-        /// <summary>
-        /// This method returns simplified truth table.
-        /// </summary>
-        public char[][] GetSimplifiedTruthTable()
-        {
-            var simplifiedTable = this.SimplifyTruthTable();
-            return simplifiedTable;
+            this.OriginalTable = this.GenerateTruthTable();
+            this.SimplifiedTable = this.SimplifyTruthTable();
         }
 
         /// <summary>
@@ -56,6 +42,83 @@ namespace LPP
             }
             headers[this.nrOfColumns - 1] = "Formula";
             return headers;
+        }
+
+        /// <summary>
+        /// This method generated disjunctive normal form of the truth table provided in infix and prefix formats
+        /// </summary>
+        public DNFModel GetDNF(char[][] table)
+        {
+            var rowsToConvert = table.Where(c => c[this.nrOfColumns - 1] == '1').ToArray();
+            var variables = this.tree.GetLeaves();
+            string dnfInfix = "";
+            string dnfPrefix = "";
+            int closingBrackets = 0;
+            for (int i = 0; i < rowsToConvert.GetLength(0); i++)
+            {
+                if(i != 0) 
+                {
+                    dnfInfix += '˅';
+                    dnfPrefix += ',';
+                }
+                if (rowsToConvert.GetLength(0) - i >= 2) // so we know there are at least to elements so a new 'OR' expression can be created
+                {
+                    dnfPrefix += "|(";
+                    closingBrackets++;
+                }
+                var currentRow = rowsToConvert[i];
+                dnfInfix += "(";
+                int amount = currentRow.Where(c => c != '*').Count(); // to know how many variables are in the row excluding '*' 
+                int insideOpenBrackets = 0;
+                for (int j = 0; j < this.nrOfColumns - 1; j++)
+                {
+                    if(currentRow[j] != '*')
+                    {
+                        if(variables.Contains(dnfInfix[dnfInfix.Length - 1]))
+                        {
+                            dnfInfix += '˄';
+                        }
+                        if (amount > 2)
+                        {
+                            dnfPrefix += "&(";
+                            insideOpenBrackets++;
+                        }
+                        dnfInfix += currentRow[j] == '1' ? variables[j].ToString() : $"¬{variables[j]}";
+                        dnfPrefix += currentRow[j] == '1' ? variables[j].ToString() : $"~({variables[j]})";
+                        if (amount > 2)
+                        {
+                            dnfPrefix += ',';
+                        }
+                        amount--;
+                    }
+                }
+                dnfInfix += ")";
+                while (insideOpenBrackets > 0)
+                {
+                    dnfPrefix += ')';
+                    insideOpenBrackets--;
+                }
+            }
+            while (closingBrackets > 0)
+            {
+                dnfPrefix += ')';
+                closingBrackets--;
+            }
+            return new DNFModel { InfixFormat = dnfInfix, PrefixFormat = dnfPrefix};
+        }
+
+        /// <summary>
+        /// This method generates the hash code of the truth table.
+        /// </summary>
+        public override int GetHashCode()
+        {
+            string binary = "";
+            // reading values from bottom to top from the last column
+            for(int i = this.OriginalTable.GetLength(0) - 1; i >= 0; i--)
+            {
+                binary += this.OriginalTable[i][this.nrOfColumns - 1];
+            }
+            return Convert.ToInt32(binary, 2);
         }
 
         /// <summary>
@@ -110,8 +173,8 @@ namespace LPP
         /// </summary>
         private char[][] SimplifyTruthTable()
         {
-            var originalRows = table.Where(c => c[this.nrOfColumns - 1] == '0').ToList();
-            var simplified = table.Where(c => c[this.nrOfColumns - 1] == '1').ToList();
+            var originalRows = OriginalTable.Select(s => s.ToArray()).Where(c => c[this.nrOfColumns - 1] == '0').ToList();
+            var simplified = OriginalTable.Select(s => s.ToArray()).Where(c => c[this.nrOfColumns - 1] == '1').ToList();
 
             bool rowWasSimplified = true;
             // Simplify rows till the algorithm continues making new changes

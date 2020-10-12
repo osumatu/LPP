@@ -1,5 +1,6 @@
 ﻿using LPP.Exceptions;
 using LPP.Helpers;
+using LPP.Models;
 using LPP.Nodes;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace LPP
         public Node Root { get; private set; }
         private List<char> leaves;
         public string Formula { get; private set; }
-        private TruthTable truthtable;
+        private TruthTableHelper truthTableHelper;
 
         // Before creating a binary tree, the provided formula is validated
         public BinaryTree(string formula)
@@ -28,7 +29,7 @@ namespace LPP
             this.IsFormulaValid(formula);
             this.Formula = formula;
             this.Root = this.CreateABinaryTree(ref formula, null);
-            this.truthtable = new TruthTable(this);
+            this.truthTableHelper = new TruthTableHelper(this);
         }
 
         public string PrintParsedFormula()
@@ -36,19 +37,34 @@ namespace LPP
             return this.Root.ToString();
         }
 
-        public char[][] GetTruthTable()
+        public char[][] GetOriginalTable()
         {
-            return this.truthtable.GetTruthTable();
+            return this.truthTableHelper.OriginalTable;
         }
 
-        public char[][] GetSimplifiedTruthTable()
+        public char[][] GetSimplifiedTable()
         {
-            return this.truthtable.GetSimplifiedTruthTable();
+            return this.truthTableHelper.SimplifiedTable;
+        }
+
+        public DNFModel GetOriginalTableDNF()
+        {
+            return this.truthTableHelper.GetDNF(this.truthTableHelper.OriginalTable);
+        }
+
+        public DNFModel GetSimplifiedTableDNF()
+        {
+            return this.truthTableHelper.GetDNF(this.truthTableHelper.SimplifiedTable);
+        }
+
+        public string GetTruthTableHashCode()
+        {
+            return this.truthTableHelper.GetHashCode().ToString("X");
         }
 
         public string[] GetTableHeaders()
         {
-            return this.truthtable.GetHeaders();
+            return this.truthTableHelper.GetHeaders();
         }
 
         public List<char> GetLeaves()
@@ -67,12 +83,18 @@ namespace LPP
             // The regex is created depicturing rather ~(A) or [&|>=](A,B) type, so by continuous check 
             // and simplification we can see if the formula ends up correctly
             string pattern = @"([~]\([A-Z0-1a-z]\))|([&|>=]\([A-Z0-1a-z],[A-Z0-1a-z]\))";
+            string singleChar = @"^[A-Z0-1a-z]$";
             Regex r = new Regex(pattern);
+            Regex r1 = new Regex(singleChar);
+            if(r1.Match(formula).Success)
+            {
+                return true;
+            }
             while (r.Match(formula).Success)
             {
                 formula = r.Replace(formula, "A");
             }
-            if(formula!="A")
+            if (formula != "A")
             {
                 throw new InvalidFormula("Provided formula is invalid, try again!");
             }
