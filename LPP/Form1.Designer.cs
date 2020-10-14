@@ -31,7 +31,6 @@ namespace LPP
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.truthTableGridView = new System.Windows.Forms.DataGridView();
             this.simplifiedTruthTableGridView = new System.Windows.Forms.DataGridView();
             this.input_process_btn = new System.Windows.Forms.Button();
@@ -72,6 +71,9 @@ namespace LPP
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.nandify_lbl = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.truthTableGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simplifiedTruthTableGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.binary_tree_pbx)).BeginInit();
@@ -80,6 +82,7 @@ namespace LPP
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // truthTableGridView
@@ -127,7 +130,6 @@ namespace LPP
             // 
             // binary_tree_pbx
             // 
-            this.binary_tree_pbx.Image = ((System.Drawing.Image)(resources.GetObject("binary_tree_pbx.Image")));
             this.binary_tree_pbx.Location = new System.Drawing.Point(735, 344);
             this.binary_tree_pbx.Name = "binary_tree_pbx";
             this.binary_tree_pbx.Size = new System.Drawing.Size(489, 533);
@@ -520,12 +522,44 @@ namespace LPP
             this.label23.TabIndex = 11;
             this.label23.Text = "Infix";
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label24.Location = new System.Drawing.Point(57, 743);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(88, 28);
+            this.label24.TabIndex = 10;
+            this.label24.Text = "Nandify";
+            // 
+            // nandify_lbl
+            // 
+            this.nandify_lbl.AutoSize = true;
+            this.nandify_lbl.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.nandify_lbl.Location = new System.Drawing.Point(3, 12);
+            this.nandify_lbl.MaximumSize = new System.Drawing.Size(0, 29);
+            this.nandify_lbl.Name = "nandify_lbl";
+            this.nandify_lbl.Size = new System.Drawing.Size(0, 28);
+            this.nandify_lbl.TabIndex = 3;
+            this.nandify_lbl.UseMnemonic = false;
+            // 
+            // panel5
+            // 
+            this.panel5.AutoScroll = true;
+            this.panel5.Controls.Add(this.nandify_lbl);
+            this.panel5.Location = new System.Drawing.Point(57, 774);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(314, 74);
+            this.panel5.TabIndex = 8;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1236, 898);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.label23);
+            this.Controls.Add(this.label24);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
@@ -561,6 +595,8 @@ namespace LPP
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -608,6 +644,9 @@ namespace LPP
         private Label label21;
         private Label label22;
         private Label label23;
+        private Label label24;
+        private Label nandify_lbl;
+        private Panel panel5;
     }
 }
 

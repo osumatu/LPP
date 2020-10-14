@@ -36,6 +36,10 @@ namespace LPP
         {
             return this.Root.ToString();
         }
+        public string NandifyFormula()
+        {
+            return this.Root.Nandify();
+        }
 
         public char[][] GetOriginalTable()
         {
@@ -83,16 +87,28 @@ namespace LPP
             // The regex is created depicturing rather ~(A) or [&|>=](A,B) type, so by continuous check 
             // and simplification we can see if the formula ends up correctly
             string pattern = @"([~]\([A-Z0-1a-z]\))|([&|>=]\([A-Z0-1a-z],[A-Z0-1a-z]\))";
+            string patternNAND = @"([%]\([A-Z0-1a-z],[A-Z0-1a-z]\))";
             string singleChar = @"^[A-Z0-1a-z]$";
             Regex r = new Regex(pattern);
             Regex r1 = new Regex(singleChar);
+            Regex rNAND = new Regex(patternNAND);
             if(r1.Match(formula).Success)
             {
                 return true;
             }
-            while (r.Match(formula).Success)
+            if(formula.Contains('%'))
             {
-                formula = r.Replace(formula, "A");
+                while (rNAND.Match(formula).Success)
+                {
+                    formula = rNAND.Replace(formula, "A");
+                }
+            }
+            else
+            {
+                while (r.Match(formula).Success)
+                {
+                    formula = r.Replace(formula, "A");
+                }
             }
             if (formula != "A")
             {
@@ -126,6 +142,11 @@ namespace LPP
                     case '|':
                         formula = formula.Remove(0, 1);
                         node = new Disjunction(null, null);
+                        break;
+                    case '%':
+                        formula = formula.Remove(0, 1);
+                        formula = formula.Insert(0, "&");
+                        node = new Negation(null);
                         break;
                     case '(':
                         formula = formula.Remove(0, 1);

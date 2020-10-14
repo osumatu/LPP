@@ -46,6 +46,7 @@ namespace LPP
                     DNFModel dnfOfSimplifiedTable = tree.GetSimplifiedTableDNF();
                     this.dnf_simplified_infix_lbl.Text = dnfOfSimplifiedTable.InfixFormat;
                     this.dnf_simplified_prefix_lbl.Text = dnfOfSimplifiedTable.PrefixFormat;
+                    this.nandify_lbl.Text = tree.NandifyFormula();
                 }
             }
             catch (InvalidFormula ex)
@@ -73,6 +74,7 @@ namespace LPP
             this.dnf_original_prefix_lbl.Text = "";
             this.dnf_simplified_prefix_lbl.Text = "";
             this.binary_tree_pbx.Image = Properties.Resources.tree_holder;
+            this.nandify_lbl.Text = "";
         }
 
         private void GenerateGridView(ref DataGridView view, char[][] data, string[] headers)

@@ -16,6 +16,11 @@ namespace LPP.Nodes
             return !(this.leftChild.CalculateTTValue());
         }
 
+        public override string Nandify()
+        {
+            return $"%({this.leftChild.Nandify()},{this.leftChild.Nandify()})";
+        }
+
         public override string ToString()
         {
             return $"{this.Value}({this.leftChild})";
