@@ -28,6 +28,7 @@ namespace LPP.Nodes
         }
 
         public abstract bool CalculateTTValue();
+        public abstract string Nandify();
 
         public override string ToString()
         {

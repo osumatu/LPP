@@ -17,5 +17,10 @@ namespace LPP.Nodes
             Node r = new Implication(this.rightChild, this.leftChild);
             return l.CalculateTTValue() && r.CalculateTTValue();
         }
+
+        public override string Nandify()
+        {
+            return $"%(%(%({this.leftChild.Nandify()},{this.leftChild.Nandify()}),%({this.rightChild.Nandify()},{this.rightChild.Nandify()})),%({this.leftChild.Nandify()},{this.rightChild.Nandify()}))";
+        }
     }
 }

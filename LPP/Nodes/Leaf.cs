@@ -16,6 +16,11 @@ namespace LPP.Nodes
             return this.Value == '1' ? true : false;
         }
 
+        public override string Nandify()
+        {
+            return this.Value.ToString();
+        }
+
         public override string ToString()
         {
             return this.Value.ToString();
