@@ -18,7 +18,7 @@ namespace LPP.Nodes
 
         public override string Nandify()
         {
-            return $"%(%({this.leftChild.Nandify()},{this.rightChild.Nandify()}),%({this.rightChild.Nandify()},B))";
+            return $"%(%({this.leftChild.Nandify()},{this.rightChild.Nandify()}),%({this.leftChild.Nandify()},{this.rightChild.Nandify()}))";
         }
     }
 }

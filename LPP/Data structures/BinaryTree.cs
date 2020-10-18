@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace LPP
+namespace LPP.Data_structures
 {
     /// <summary>
     /// The main Binary tree class.
@@ -19,7 +19,7 @@ namespace LPP
         public Node Root { get; private set; }
         private List<char> leaves;
         public string Formula { get; private set; }
-        private TruthTableHelper truthTableHelper;
+        private TruthTable truthTableHelper;
 
         // Before creating a binary tree, the provided formula is validated
         public BinaryTree(string formula)
@@ -29,7 +29,7 @@ namespace LPP
             this.IsFormulaValid(formula);
             this.Formula = formula;
             this.Root = this.CreateABinaryTree(ref formula, null);
-            this.truthTableHelper = new TruthTableHelper(this);
+            this.truthTableHelper = new TruthTable(this);
         }
 
         public string PrintParsedFormula()
@@ -63,7 +63,7 @@ namespace LPP
 
         public string GetTruthTableHashCode()
         {
-            return this.truthTableHelper.GetHashCode().ToString("X");
+            return this.truthTableHelper.GetHashCode(this.truthTableHelper.OriginalTable).ToString("X");
         }
 
         public string[] GetTableHeaders()
