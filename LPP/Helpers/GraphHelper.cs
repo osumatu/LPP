@@ -1,4 +1,5 @@
-﻿using LPP.Nodes;
+﻿using LPP.Data_structures;
+using LPP.Nodes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

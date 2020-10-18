@@ -134,6 +134,7 @@ namespace LPP
             this.binary_tree_pbx.Name = "binary_tree_pbx";
             this.binary_tree_pbx.Size = new System.Drawing.Size(489, 533);
             this.binary_tree_pbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.binary_tree_pbx.Image = Image.FromFile(@"..\..\..\images\tree_holder.png");
             this.binary_tree_pbx.TabIndex = 2;
             this.binary_tree_pbx.TabStop = false;
             // 
@@ -162,7 +163,7 @@ namespace LPP
             // 
             this.exception_lbl.AutoSize = true;
             this.exception_lbl.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.exception_lbl.Location = new System.Drawing.Point(156, 18);
+            this.exception_lbl.Location = new System.Drawing.Point(442, 23);
             this.exception_lbl.Name = "exception_lbl";
             this.exception_lbl.Size = new System.Drawing.Size(0, 30);
             this.exception_lbl.TabIndex = 5;
@@ -526,7 +527,7 @@ namespace LPP
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label24.Location = new System.Drawing.Point(57, 743);
+            this.label24.Location = new System.Drawing.Point(57, 727);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(88, 28);
             this.label24.TabIndex = 10;
@@ -547,7 +548,7 @@ namespace LPP
             // 
             this.panel5.AutoScroll = true;
             this.panel5.Controls.Add(this.nandify_lbl);
-            this.panel5.Location = new System.Drawing.Point(57, 774);
+            this.panel5.Location = new System.Drawing.Point(57, 758);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(314, 74);
             this.panel5.TabIndex = 8;

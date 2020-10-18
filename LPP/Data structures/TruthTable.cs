@@ -4,12 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LPP.Helpers
+namespace LPP.Data_structures
 {
     /// <summary>
     /// The TruthTable class contains the information about thruth table constructed from BinaryTree.
     /// </summary>
-    public class TruthTableHelper
+    public class TruthTable
     {
         public char[][] OriginalTable { private set; get; }
         public char[][] SimplifiedTable { private set; get; }
@@ -17,7 +17,7 @@ namespace LPP.Helpers
         private int nrOfRows;
         private BinaryTree tree;
 
-        public TruthTableHelper(BinaryTree tree)
+        public TruthTable(BinaryTree tree)
         {
             this.tree = tree;
             // Amount of rows in the table equals to the number of possible combinations 
@@ -61,7 +61,7 @@ namespace LPP.Helpers
                     dnfInfix += '˅';
                     dnfPrefix += ',';
                 }
-                if (rowsToConvert.GetLength(0) - i >= 2) // so we know there are at least to elements so a new 'OR' expression can be created
+                if (rowsToConvert.GetLength(0) - i >= 2) // so we know there are at least two elements so a new 'OR' expression can be created
                 {
                     dnfPrefix += "|(";
                     closingBrackets++;
@@ -110,13 +110,13 @@ namespace LPP.Helpers
         /// <summary>
         /// This method generates the hash code of the truth table.
         /// </summary>
-        public override int GetHashCode()
+        public int GetHashCode(char[][] table)
         {
             string binary = "";
             // reading values from bottom to top from the last column
-            for(int i = this.OriginalTable.GetLength(0) - 1; i >= 0; i--)
+            for(int i = table.GetLength(0) - 1; i >= 0; i--)
             {
-                binary += this.OriginalTable[i][this.nrOfColumns - 1];
+                binary += table[i][this.nrOfColumns - 1];
             }
             return Convert.ToInt32(binary, 2);
         }
