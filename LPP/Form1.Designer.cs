@@ -134,6 +134,7 @@ namespace LPP
             this.binary_tree_pbx.Name = "binary_tree_pbx";
             this.binary_tree_pbx.Size = new System.Drawing.Size(489, 533);
             this.binary_tree_pbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.binary_tree_pbx.Image = Image.FromFile(@"..\..\..\images\tree_holder.png");
             this.binary_tree_pbx.TabIndex = 2;
             this.binary_tree_pbx.TabStop = false;
             // 

@@ -74,7 +74,7 @@ namespace LPP
             this.dnf_simplified_infix_lbl.Text = "";
             this.dnf_original_prefix_lbl.Text = "";
             this.dnf_simplified_prefix_lbl.Text = "";
-            this.binary_tree_pbx.Image = Properties.Resources.tree_holder;
+            this.binary_tree_pbx.Image = Image.FromFile(@"..\..\..\images\tree_holder.png");
             this.nandify_lbl.Text = "";
         }
 
