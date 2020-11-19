@@ -1,9 +1,6 @@
 ﻿using LPP.Data_structures;
 using LPP.Exceptions;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LPP.Tests
 {

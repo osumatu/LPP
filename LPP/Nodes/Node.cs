@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LPP.Nodes
+﻿namespace LPP.Nodes
 {
     /// <summary>
     /// The abstract Node class.
@@ -19,7 +15,7 @@ namespace LPP.Nodes
         {
             this.leftChild = leftChild;
             this.rightChild = rightChild;
-            this.Value = value;
+            Value = value;
         }
         public Node(Node leftChild, Node rightChild)
         {
@@ -32,7 +28,7 @@ namespace LPP.Nodes
 
         public override string ToString()
         {
-            return $"({leftChild} {this.Value} {rightChild})";
+            return $"({leftChild} {Value} {rightChild})";
         }
     }
 }

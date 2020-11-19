@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LPP.Nodes
+﻿namespace LPP.Nodes
 {
     public class Biconditional : Node
     {
         public Biconditional(Node leftChild, Node rightChild) : base(leftChild, rightChild)
         {
-            this.Value = '↔';
+            Value = '↔';
         }
 
         public override bool CalculateTTValue()
         {
-            Node l = new Implication(this.leftChild, this.rightChild);
-            Node r = new Implication(this.rightChild, this.leftChild);
+            Node l = new Implication(leftChild, rightChild);
+            Node r = new Implication(rightChild, leftChild);
             return l.CalculateTTValue() && r.CalculateTTValue();
         }
 
         public override string Nandify()
         {
-            return $"%(%(%({this.leftChild.Nandify()},{this.leftChild.Nandify()}),%({this.rightChild.Nandify()},{this.rightChild.Nandify()})),%({this.leftChild.Nandify()},{this.rightChild.Nandify()}))";
+            return $"%(%(%({leftChild.Nandify()},{leftChild.Nandify()}),%({rightChild.Nandify()},{rightChild.Nandify()})),%({leftChild.Nandify()},{rightChild.Nandify()}))";
         }
     }
 }

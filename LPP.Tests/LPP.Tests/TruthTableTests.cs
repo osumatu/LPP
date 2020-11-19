@@ -1,8 +1,6 @@
 ﻿using LPP.Data_structures;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LPP.Tests
 {
@@ -46,7 +44,7 @@ namespace LPP.Tests
             BinaryTree tree = new BinaryTree(formula);
             TruthTable table = new TruthTable(tree);
             var dnf = table.GetDNF(table.OriginalTable);
-            if(table.GetHashCode(table.OriginalTable) != 0)
+            if (table.GetHashCode(table.OriginalTable) != 0)
             {
                 BinaryTree treeFromDnf = new BinaryTree(dnf.PrefixFormat);
                 TruthTable tableFromDnf = new TruthTable(treeFromDnf);

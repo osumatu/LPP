@@ -2,10 +2,7 @@
 using LPP.Helpers;
 using LPP.Models;
 using LPP.Nodes;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace LPP.Data_structures
@@ -24,57 +21,57 @@ namespace LPP.Data_structures
         // Before creating a binary tree, the provided formula is validated
         public BinaryTree(string formula)
         {
-            this.leaves = new List<char>();
+            leaves = new List<char>();
             formula = formula.Replace(" ", "");
-            this.IsFormulaValid(formula);
-            this.Formula = formula;
-            this.Root = this.CreateABinaryTree(ref formula, null);
-            this.truthTableHelper = new TruthTable(this);
+            IsFormulaValid(formula);
+            Formula = formula;
+            Root = CreateABinaryTree(ref formula, null);
+            truthTableHelper = new TruthTable(this);
         }
 
         public string PrintParsedFormula()
         {
-            return this.Root.ToString();
+            return Root.ToString();
         }
         public string NandifyFormula()
         {
-            return this.Root.Nandify();
+            return Root.Nandify();
         }
 
         public char[][] GetOriginalTable()
         {
-            return this.truthTableHelper.OriginalTable;
+            return truthTableHelper.OriginalTable;
         }
 
         public char[][] GetSimplifiedTable()
         {
-            return this.truthTableHelper.SimplifiedTable;
+            return truthTableHelper.SimplifiedTable;
         }
 
         public DNFModel GetOriginalTableDNF()
         {
-            return this.truthTableHelper.GetDNF(this.truthTableHelper.OriginalTable);
+            return truthTableHelper.GetDNF(truthTableHelper.OriginalTable);
         }
 
         public DNFModel GetSimplifiedTableDNF()
         {
-            return this.truthTableHelper.GetDNF(this.truthTableHelper.SimplifiedTable);
+            return truthTableHelper.GetDNF(truthTableHelper.SimplifiedTable);
         }
 
         public string GetTruthTableHashCode()
         {
-            return this.truthTableHelper.GetHashCode(this.truthTableHelper.OriginalTable).ToString("X");
+            return truthTableHelper.GetHashCode(truthTableHelper.OriginalTable).ToString("X");
         }
 
         public string[] GetTableHeaders()
         {
-            return this.truthTableHelper.GetHeaders();
+            return truthTableHelper.GetHeaders();
         }
 
         public List<char> GetLeaves()
         {
-            this.leaves.Sort((x, y) => x.CompareTo(y));
-            return this.leaves;
+            leaves.Sort((x, y) => x.CompareTo(y));
+            return leaves;
         }
 
         public string GetTreeImage()
@@ -92,11 +89,11 @@ namespace LPP.Data_structures
             Regex r = new Regex(pattern);
             Regex r1 = new Regex(singleChar);
             Regex rNAND = new Regex(patternNAND);
-            if(r1.Match(formula).Success)
+            if (r1.Match(formula).Success)
             {
                 return true;
             }
-            if(formula.Contains('%'))
+            if (formula.Contains('%'))
             {
                 while (rNAND.Match(formula).Success)
                 {
@@ -150,32 +147,28 @@ namespace LPP.Data_structures
                         break;
                     case '(':
                         formula = formula.Remove(0, 1);
-                        return this.CreateABinaryTree(ref formula, node);
+                        return CreateABinaryTree(ref formula, node);
                     case ',':
                         formula = formula.Remove(0, 1);
-                        return this.CreateABinaryTree(ref formula, node);
+                        return CreateABinaryTree(ref formula, node);
                     case ')':
                         formula = formula.Remove(0, 1);
-                        return this.CreateABinaryTree(ref formula, node);
+                        return CreateABinaryTree(ref formula, node);
                     default:
                         node = new Leaf(formula[0]);
                         if (!leaves.Exists(e => e == node.Value))
-                            this.leaves.Add(node.Value);
+                            leaves.Add(node.Value);
                         formula = formula.Remove(0, 1);
                         break;
                 }
                 if (!(node is Leaf))
+                {
                     node.leftChild = CreateABinaryTree(ref formula, node.leftChild);
-
-                if (!(node is Negation) && !(node is Leaf))
-                    node.rightChild = CreateABinaryTree(ref formula, node.rightChild);
-
-                return node;
+                    if (!(node is Negation))
+                        node.rightChild = CreateABinaryTree(ref formula, node.rightChild);
+                }
             }
-            else
-            {
-                return node;
-            }
+            return node;
         }
     }
 }

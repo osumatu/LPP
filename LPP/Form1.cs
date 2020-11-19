@@ -2,13 +2,9 @@
 using LPP.Exceptions;
 using LPP.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LPP
@@ -23,65 +19,71 @@ namespace LPP
 
         private void input_process_btn_Click(object sender, EventArgs e)
         {
-            this.exception_lbl.Text = "";
+            exception_lbl.Text = "";
             try
             {
-                string formula = this.formula_tbx.Text;
-                this.formula_tbx.Enabled = !(this.formula_tbx.Enabled);
-                if (this.formula_tbx.Enabled)
+                string formula = formula_tbx.Text;
+                formula_tbx.Enabled = !(formula_tbx.Enabled);
+                if (formula_tbx.Enabled)
                 {
-                    this.CleanFormControllers();
+                    CleanFormControllers();
                 }
                 else
                 {
-                    this.input_process_btn.Text = "Enter another formula";
+                    input_process_btn.Text = "Enter another formula";
                     tree = new BinaryTree(formula);
-                    this.binary_tree_pbx.ImageLocation = tree.GetTreeImage();
-                    this.parsed_formula_lbl.Text = tree.PrintParsedFormula();
-                    this.GenerateGridView(ref truthTableGridView, this.tree.GetOriginalTable(), this.tree.GetTableHeaders());
-                    this.GenerateGridView(ref simplifiedTruthTableGridView, this.tree.GetSimplifiedTable(), this.tree.GetTableHeaders());
-                    this.hash_code_lbl.Text = tree.GetTruthTableHashCode();
+                    binary_tree_pbx.ImageLocation = tree.GetTreeImage();
+                    parsed_formula_lbl.Text = tree.PrintParsedFormula();
+                    GenerateGridView(ref truthTableGridView, tree.GetOriginalTable(), tree.GetTableHeaders());
+                    GenerateGridView(ref simplifiedTruthTableGridView, tree.GetSimplifiedTable(), tree.GetTableHeaders());
+                    hash_code_lbl.Text = tree.GetTruthTableHashCode();
                     DNFModel dnfOfOriginalTable = tree.GetOriginalTableDNF();
-                    this.dnf_original_infix_lbl.Text = dnfOfOriginalTable.InfixFormat;
-                    this.dnf_original_prefix_lbl.Text = dnfOfOriginalTable.PrefixFormat;
+                    dnf_original_infix_lbl.Text = dnfOfOriginalTable.InfixFormat;
+                    dnf_original_prefix_lbl.Text = dnfOfOriginalTable.PrefixFormat;
                     DNFModel dnfOfSimplifiedTable = tree.GetSimplifiedTableDNF();
-                    this.dnf_simplified_infix_lbl.Text = dnfOfSimplifiedTable.InfixFormat;
-                    this.dnf_simplified_prefix_lbl.Text = dnfOfSimplifiedTable.PrefixFormat;
-                    this.nandify_lbl.Text = tree.NandifyFormula();
+                    dnf_simplified_infix_lbl.Text = dnfOfSimplifiedTable.InfixFormat;
+                    dnf_simplified_prefix_lbl.Text = dnfOfSimplifiedTable.PrefixFormat;
+                    nandify_lbl.Text = tree.NandifyFormula();
                 }
             }
             catch (InvalidFormula ex)
             {
-                this.exception_lbl.Text = ex.Message;
-                this.input_process_btn.Text = "Enter another formula";
-                this.exception_lbl.ForeColor = Color.Red;
+                exception_lbl.Text = ex.Message;
+                input_process_btn.Text = "Enter another formula";
+                exception_lbl.ForeColor = Color.Red;
             }
         }
 
         private void CleanFormControllers()
         {
-            this.input_process_btn.Text = "Process Input";
-            this.truthTableGridView.Rows.Clear();
-            this.truthTableGridView.Columns.Clear();
-            this.truthTableGridView.Refresh();
-            this.simplifiedTruthTableGridView.Rows.Clear();
-            this.simplifiedTruthTableGridView.Columns.Clear();
-            this.simplifiedTruthTableGridView.Refresh();
-            this.formula_tbx.Text = "";
-            this.parsed_formula_lbl.Text = "";
-            this.hash_code_lbl.Text = "";
-            this.dnf_original_infix_lbl.Text = "";
-            this.dnf_simplified_infix_lbl.Text = "";
-            this.dnf_original_prefix_lbl.Text = "";
-            this.dnf_simplified_prefix_lbl.Text = "";
-            this.binary_tree_pbx.Image = Image.FromFile(@"..\..\..\images\tree_holder.png");
-            this.nandify_lbl.Text = "";
+            input_process_btn.Text = "Process Input";
+            truthTableGridView.Rows.Clear();
+            truthTableGridView.Columns.Clear();
+            truthTableGridView.Refresh();
+            simplifiedTruthTableGridView.Rows.Clear();
+            simplifiedTruthTableGridView.Columns.Clear();
+            simplifiedTruthTableGridView.Refresh();
+            formula_tbx.Text = "";
+            parsed_formula_lbl.Text = "";
+            hash_code_lbl.Text = "";
+            dnf_original_infix_lbl.Text = "";
+            dnf_simplified_infix_lbl.Text = "";
+            dnf_original_prefix_lbl.Text = "";
+            dnf_simplified_prefix_lbl.Text = "";
+            binary_tree_pbx.Image = Image.FromFile(@"..\..\..\images\tree_holder.png");
+            nandify_lbl.Text = "";
         }
 
         private void GenerateGridView(ref DataGridView view, char[][] data, string[] headers)
         {
             view.ColumnCount = headers.Count();
             view.ColumnHeadersVisible = true;
+            view.ReadOnly = true;
+            view.AllowUserToAddRows = false;
+            view.AllowUserToDeleteRows = false;
+            view.AllowUserToResizeRows = false;
+            view.AllowUserToResizeColumns = false;
+            view.RowHeadersVisible = false;
             DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
             columnHeaderStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
             view.ColumnHeadersDefaultCellStyle = columnHeaderStyle;

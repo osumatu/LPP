@@ -1,9 +1,7 @@
 ﻿using LPP.Data_structures;
 using LPP.Nodes;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 namespace LPP.Helpers
 {
@@ -18,14 +16,24 @@ namespace LPP.Helpers
         /// </summary>
         public static string GenerateGraphFromTree(BinaryTree tree)
         {
-            string fileName = GenerateFileInfoAboutTree(tree);
-            string imageName = "tree.png";
-            Process dot = new Process();
-            dot.StartInfo.FileName = @"dot.exe";
-            dot.StartInfo.Arguments = $"-Tpng -o{imageName} {fileName}";
-            dot.Start();
-            dot.WaitForExit();
-            return imageName;
+            try
+            {
+                string fileName = GenerateFileInfoAboutTree(tree);
+                string imageName = "tree.png";
+                Process dot = new Process();
+                dot.StartInfo.FileName = @"dot.exe";
+                dot.StartInfo.Arguments = $"-Tpng -o{imageName} {fileName}";
+                dot.Start();
+                dot.WaitForExit();
+                return imageName;
+            }
+            catch (System.ComponentModel.Win32Exception)
+            {
+                // Thrown when dot.exe is not found.
+                // Return empty string, so home page keep default tree image.
+                // Maybe warn user with a MessageBox?
+                return string.Empty;
+            }
         }
 
 
@@ -34,14 +42,22 @@ namespace LPP.Helpers
         /// </summary>
         private static string GenerateFileInfoAboutTree(BinaryTree tree)
         {
-            string name = "tree.dot";
-            List<string> text = new List<string>();
-            text.Add("graph logic {");
-            text.Add("  node [ fontname = \"Arial\" ]");
-            PreOrderWalk(tree.Root, ref text, 1, 1);
-            text.Add("}");
-            System.IO.File.WriteAllLines(name, text);
-            return name;
+            try
+            {
+                string name = "tree.dot";
+                List<string> text = new List<string>();
+                text.Add("graph logic {");
+                text.Add("  node [ fontname = \"Arial\" ]");
+                PreOrderWalk(tree.Root, ref text, 1, 1);
+                text.Add("}");
+                System.IO.File.WriteAllLines(name, text);
+                return name;
+            }
+            catch (System.IO.IOException)
+            {
+                // Thrown if existing file is locked by the user or another process.
+                return string.Empty;
+            }
         }
 
         /// <summary>
@@ -50,7 +66,7 @@ namespace LPP.Helpers
         /// </summary>
         private static void PreOrderWalk(Node node, ref List<string> text, int i_parent, int i)
         {
-            if(node != null)
+            if (node != null)
             {
                 if (i > 1)
                 {

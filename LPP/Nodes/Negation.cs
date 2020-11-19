@@ -1,29 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LPP.Nodes
+﻿namespace LPP.Nodes
 {
     public class Negation : Node
     {
         public Negation(Node leftChild) : base(leftChild, null)
         {
-            this.Value = '¬'; 
+            Value = '¬';
         }
 
         public override bool CalculateTTValue()
         {
-            return !(this.leftChild.CalculateTTValue());
+            return !(leftChild.CalculateTTValue());
         }
 
         public override string Nandify()
         {
-            return $"%({this.leftChild.Nandify()},{this.leftChild.Nandify()})";
+            return $"%({leftChild.Nandify()},{leftChild.Nandify()})";
         }
 
         public override string ToString()
         {
-            return $"{this.Value}({this.leftChild})";
+            return $"{Value}({leftChild})";
         }
     }
 }
